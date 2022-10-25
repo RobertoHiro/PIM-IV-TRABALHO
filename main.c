@@ -14,7 +14,7 @@ int main()
 void cadastrarPaciente(){
     //setlocale (LC_ALL, "");
     printf("Digite o nome do/a paciente: ");
-    fgets(&nome,100, stdin);
+    gets(nome);
     //getchar();
 
     printf("Digite a idade do/a paciente: ");
@@ -22,12 +22,12 @@ void cadastrarPaciente(){
     getchar();
 
     printf("Digite o endereço do/a paciente: ");
-    fgets(&endereco, 100, stdin);
-    getchar();
+    gets(endereco);
+    //getchar();
 
     //scanf("%s %d %s", nome, idade, endereco);
 
-    printf("\nPaciente: %sIdade: %d\nEndereço: %s", nome, idade, endereco);
+    printf("\n\nPaciente: %s\nIdade: %d\nEndereço: %s", nome, idade, endereco);
 
 
     getchar();

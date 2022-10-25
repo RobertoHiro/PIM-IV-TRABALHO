@@ -18,7 +18,7 @@ void cadastrarPaciente(){
     //getchar();
 
     printf("Digite a idade do/a paciente: ");
-    scanf("%d",&idade);
+    scanf("%d[^\n]",&idade);
     getchar();
 
     printf("Digite o endereço do/a paciente: ");

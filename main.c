@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <locale.h>
 
-typedef struct
-{
+typedef struct{
    char rua[100];
    int numero;
    char bairro[100];
@@ -11,17 +10,25 @@ typedef struct
    int CEP;
 } Endereco;
 
-typedef struct
-{
+typedef struct{
+    int dia;
+    int mes;
+    int ano;
+} ObjData;
+
+typedef struct{
     char nome[100];
-    int idade;
     int cpf;
     int telefone;
     Endereco endereco;
-
+    ObjData dataDeNacimento;
+    char email;
+    ObjData dataDoDiagnostico;
+    bool comorbidade;
 } Paciente;
 
 Paciente paciente;
+char isComorbidade;
 
 void cadastrarPaciente(){
     setlocale (LC_ALL, "");
@@ -31,10 +38,6 @@ void cadastrarPaciente(){
 
     printf("Digite o CPF do/a paciente: ");
     scanf("%i[^\n]",&paciente.cpf);
-    getchar();
-
-    printf("Digite a idade do/a paciente: ");
-    scanf("%i[^\n]",&paciente.idade);
     getchar();
 
     printf("Digite o endereço do/a paciente \n");
@@ -57,6 +60,27 @@ void cadastrarPaciente(){
     printf("Digite o CEP do/a paciente: ");
     scanf("%i[^\n]",&paciente.endereco.CEP);
     getchar();
+
+    printf("Digite a data de nacimento(dia/mes/ano) do/a paciente: ");
+    scanf("%d/%d/%d", paciente.dataDeNacimento.dia, paciente.dataDeNacimento.mes, paciente.dataDeNacimento.ano);
+    getchar();
+
+    printf("Digite o e-mail do/a paciente: ");
+    gets(paciente.email);
+
+    printf("Digite a data do diagnóstico(dia/mes/ano): ");
+    scanf("%d/%d/%d", paciente.dataDoDiagnostico.dia, paciente.dataDoDiagnostico.mes, paciente.dataDoDiagnostico.ano);
+    getchar();
+
+    printf("Digite se o/a paciente tem comorbidade(S/N): ");
+    scanf("%s", isComorbidade);
+    if(toUpper(isComorbidade) == "S"){
+        paciente.comorbidade == true;
+    }
+    else{
+        paciente.comorbidade == false;
+    }
+    getchar();
     
     feedback();
 }
@@ -76,8 +100,11 @@ void feedback(){
     getchar();
 }
 
-int main()
-{
+void salvarRegistro(){
+
+}
+
+int main(){
     cadastrarPaciente();
     return 0;
 }

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <locale.h>
+#include <unistd.h>
 
 typedef struct{
    char rua[100];
@@ -29,6 +30,9 @@ typedef struct{
 
 Paciente paciente;
 char isComorbidade;
+
+char registrosDeDiagnostico = "cadastro_de_diagnostico.txt";
+char registrosDePacienciaComComorbidade = "pacientes_com_comorbidade.txt";
 
 void cadastrarPaciente(){
     setlocale (LC_ALL, "");
@@ -100,8 +104,29 @@ void feedback(){
     getchar();
 }
 
-void salvarRegistro(){
+void salvarDadoComorbidade(){
+    file = fopen(registrosDePacienciaComComorbidade, "w+");
+    fputs("\n"+registro);
+    fclose(registrosDePacienciaComComorbidade);
+}
 
+void salvarRegistro(registro){
+    /*
+    if(access(registrosDeDiagnostico, F_OK) == 0){
+        file = fopen(registrosDeDiagnostico, "a");
+        fprintf(file, "%s", "\n"+registro);
+    }else{
+        file = fopen(registrosDeDiagnostico, "w+");
+        fprintf(file, "%s", "\n"+registro);
+    }
+    */
+    file = fopen(registrosDeDiagnostico, "w+");
+    fputs("\n"+registro);
+    fclose(registrosDeDiagnostico);
+
+    if(paciente.comorbidade){
+        salvarDadoComorbidade();
+    }
 }
 
 int main(){

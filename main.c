@@ -51,6 +51,7 @@ void cadastrarPaciente(){
 
     printf("Digite o número da rua do/a paciente: ");
     scanf("%i[^\n]",&paciente.endereco.numero);
+    getchar();
 
     printf("Digite o bairro do/a paciente: ");
     gets(paciente.endereco.bairro);
